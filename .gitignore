@@ -1,0 +1,112 @@
+# Dependencies and packages
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+.env
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+static/
+
+# Flask
+instance/
+.webassets-cache
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Expo/React Native
+.expo/
+.expo-shared/
+dist/
+web-build/
+
+# AWS
+.aws/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+
+# Coverage reports
+coverage/
+*.coverage
+.coverage.*
+htmlcov/
+
+# Testing
+.pytest_cache/
+.coverage
+.nyc_output
+
+# Documentation
+docs/_build/
+
+# Local configuration
+config.local.js
+config.local.json
+
+# Backup files
+*.bak
+*.backup

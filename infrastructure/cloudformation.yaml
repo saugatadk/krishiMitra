@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Krishimitra Infrastructure: S3, DynamoDB, SNS, Lambda'
+
+Resources:
+  # S3 Bucket for Images and Audio
+  KrishimitraAssetsBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'krishimitra-assets-prod'
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: ['*']
+            AllowedMethods: ['GET', 'PUT', 'POST']
+            AllowedOrigins: ['*']
+
+  # DynamoDB Table for Sensor Data
+  SensorDataTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: 'KrishimitraSensorData'
+      AttributeDefinitions:
+        - AttributeName: 'SensorId'
+          AttributeType: 'S'
+        - AttributeName: 'Timestamp'
+          AttributeType: 'N'
+      KeySchema:
+        - AttributeName: 'SensorId'
+          KeyType: 'HASH'
+        - AttributeName: 'Timestamp'
+          KeyType: 'RANGE'
+      BillingMode: PAY_PER_REQUEST
+
+  # SNS Topic for Alerts
+  AlertsTopic:
+    Type: 'AWS::SNS::Topic'
+    Properties:
+      TopicName: 'KrishimitraAlerts'
+
+  # IAM Role for Lambda
+  LambdaExecutionRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Policies:
+        - PolicyName: 'KrishimitraLambdaPolicy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 's3:*'
+                  - 'rekognition:*'
+                  - 'transcribe:*'
+                  - 'bedrock:*'
+                  - 'sns:*'
+                  - 'dynamodb:*'
+                Resource: '*'
+
+Outputs:
+  BucketName:
+    Value: !Ref KrishimitraAssetsBucket
+  TopicArn:
+    Value: !Ref AlertsTopic

@@ -1,0 +1,6 @@
+Django>=4.2
+djangorestframework
+boto3
+python-dotenv
+requests
+psycopg2-binary
