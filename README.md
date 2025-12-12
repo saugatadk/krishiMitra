@@ -4,10 +4,7 @@
 
 ## 🎬 Demo Video
 
-<video width="100%" controls autoplay muted loop>
-  <source src="prototype video/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/6e9438fa-49cf-407a-b568-c4dd3ed282d4
 
 *Watch Krishimitra in action: Disease detection, voice queries in Nepali, and live market prices for cardamom farmers*
 
