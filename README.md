@@ -2,6 +2,15 @@
 
 **Smart AI-powered farming solutions for Nepali cardamom farmers**
 
+## 🎬 Demo Video
+
+<video width="100%" controls autoplay muted loop>
+  <source src="prototype video/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+*Watch Krishimitra in action: Disease detection, voice queries in Nepali, and live market prices for cardamom farmers*
+
 ## 🚀 Features
 
 ### 📸 Disease Detection
