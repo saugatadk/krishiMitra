@@ -1,4 +1,4 @@
-# Dependencies and packages
+# Dependencies & Package Managers
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -6,13 +6,16 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 
-# Python
+# Python Bytecode & Environments
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
 env/
+venv/
+ENV/
+.venv/
 build/
 develop-eggs/
 dist/
@@ -29,40 +32,29 @@ wheels/
 .installed.cfg
 *.egg
 
-# Virtual environments
-venv/
-ENV/
-env/
-.venv/
-.env
-
-# Django
+# Django & Databases
 *.log
+logs/
 local_settings.py
+*.sqlite3
+*.sqlite3-journal
 db.sqlite3
 db.sqlite3-journal
 media/
+backend/media/
 static/
 
-# Flask
-instance/
-.webassets-cache
-
-# Environment variables
+# Environment Configurations
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
 
-# IDE and editor files
+# IDE, OS & Editor Artifacts
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -71,42 +63,42 @@ instance/
 ehthumbs.db
 Thumbs.db
 
-# Logs
-*.log
-logs/
-
-# Expo/React Native
+# Mobile App & Frontend Builds
 .expo/
 .expo-shared/
-dist/
 web-build/
+mobile-app/dist/
 
-# AWS
-.aws/
-
-# Temporary files
-*.tmp
-*.temp
-temp/
-
-# Coverage reports
+# Testing & Coverage
+.pytest_cache/
+backend/.pytest_cache/
 coverage/
 *.coverage
 .coverage.*
 htmlcov/
-
-# Testing
-.pytest_cache/
-.coverage
 .nyc_output
 
-# Documentation
-docs/_build/
+# Machine Learning Checkpoints & Heavy Weights (>100MB / binary artifacts)
+*.pt
+*.pth
+*.onnx
+*.engine
+.u2net/
+weights/
+runs/
+**/runs/
 
-# Local configuration
-config.local.js
-config.local.json
+# ML Datasets, Caches & Heavy Run Artifacts
+ml_pipeline/data/
+*.cache
+ml_pipeline/runs/**/weights/
+ml_pipeline/runs/**/kfold_splits/
+ml_pipeline/runs/**/kfold_training/
 
-# Backup files
-*.bak
-*.backup
+# Scratch & Temporary Files
+*.tmp
+*.temp
+temp/
+scratch/
+test_*.png
+scratch_*.png
