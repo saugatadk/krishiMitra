@@ -1,13 +1,25 @@
 from pathlib import Path
 import os
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-mock-key-for-prototype'
+# Initialize environment variables
+env = environ.Env(
+    DEBUG=(bool, True),
+    SECRET_KEY=(str, 'django-insecure-krishimitra-dev-key'),
+    ALLOWED_HOSTS=(list, ['*']),
+    CORS_ALLOW_ALL_ORIGINS=(bool, True),
+)
 
-DEBUG = True
+# Read .env file if it exists
+env_file = BASE_DIR / '.env'
+if env_file.exists():
+    environ.Env.read_env(env_file)
 
-ALLOWED_HOSTS = ['*']
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,11 +28,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Third party apps
     'rest_framework',
+    'corsheaders',
+    # Local apps
     'api',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -28,6 +44,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# CORS Settings
+CORS_ALLOW_ALL_ORIGINS = env.bool('CORS_ALLOW_ALL_ORIGINS', default=True)
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
 ]
 
 ROOT_URLCONF = 'krishimitra_backend.urls'
@@ -51,10 +82,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'krishimitra_backend.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db('DATABASE_URL', default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -73,20 +101,36 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Asia/Kathmandu'
 USE_I18N = True
-
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media Files (Images, Audio)
+MEDIA_URL = env('MEDIA_URL', default='/media/')
+MEDIA_ROOT = BASE_DIR / env('MEDIA_ROOT', default='media')
+
+# REST Framework Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AWS Configuration (Mock values for prototype)
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', 'mock_key')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', 'mock_secret')
-AWS_REGION_NAME = 'us-east-1'
-S3_BUCKET_NAME = 'krishimitra-assets'
-SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:123456789012:KrishimitraAlerts'
+# Cloud Credentials (Optional - local fallback activated when missing)
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', default='')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', default='')
+AWS_REGION_NAME = env('AWS_REGION_NAME', default='us-east-1')
+S3_BUCKET_NAME = env('S3_BUCKET_NAME', default='krishimitra-assets')
+GROQ_API_KEY = env('GROQ_API_KEY', default='')
+OPENAI_API_KEY = env('OPENAI_API_KEY', default='')
