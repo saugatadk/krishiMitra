@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "Krishimitra",
+    "slug": "krishimitra",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1b5e20"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.krishimitra.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Krishimitra needs access to your camera to capture cardamom plant photos for disease diagnosis.",
+        "NSMicrophoneUsageDescription": "Krishimitra needs access to your microphone to record farming voice queries in Nepali.",
+        "NSPhotoLibraryUsageDescription": "Krishimitra needs access to your photo gallery to select crop leaf photos."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1b5e20"
+      },
+      "package": "com.krishimitra.app",
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Krishimitra to select plant photos for disease diagnosis.",
+          "cameraPermission": "Allow Krishimitra to take leaf photos for instant analysis."
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow Krishimitra to record voice questions in Nepali."
+        }
+      ],
+      "expo-status-bar"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "krishimitra-local"
+      }
+    }
+  }
+}

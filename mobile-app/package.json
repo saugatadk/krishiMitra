@@ -9,22 +9,25 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-navigation/native": "^6.1.18",
-    "@react-navigation/stack": "^6.4.1",
+    "@expo/metro-runtime": "~58.0.15",
+    "@react-navigation/native": "^7.5.1",
+    "@react-navigation/stack": "^7.12.1",
     "axios": "^1.7.0",
-    "expo": "~54.0.0",
-    "expo-av": "~16.0.8",
-    "expo-constants": "~18.0.11",
-    "expo-image-picker": "~17.0.9",
-    "expo-status-bar": "~3.0.9",
-    "react": "19.1.0",
-    "react-native": "0.81.5",
-    "react-native-gesture-handler": "~2.28.0",
-    "react-native-safe-area-context": "~5.6.0",
-    "react-native-screens": "~4.16.0"
+    "expo": "^58.0.0",
+    "expo-audio": "~58.0.10",
+    "expo-constants": "~58.0.13",
+    "expo-image-picker": "~58.0.10",
+    "expo-status-bar": "~58.0.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-gesture-handler": "~3.3.0",
+    "react-native-safe-area-context": "~5.10.1",
+    "react-native-screens": "~4.30.0",
+    "react-native-web": "^0.21.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.0"
+    "@babel/core": "^7.29.7"
   },
   "private": true
 }
