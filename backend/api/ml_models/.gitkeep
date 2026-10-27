@@ -1,0 +1,2 @@
+# Keep backend/api/ml_models directory in version control.
+# Model weight files (*.pt, *.pth, *.onnx) are excluded via .gitignore due to GitHub file size limits.
